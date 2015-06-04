@@ -1,0 +1,22 @@
+<!-- Feilds that no longer exist in Craigslist APp.
+<p>
+    Square Footage: <%= post.squareft %>
+  </p> 
+
+  <p>
+    Cats Allowed: <%= post.cats %>
+  </p>
+
+  <p>
+    Dogs Allowed: <%= post.dogs %>
+  </p>
+
+  <p>
+    Washer/Dryer in Unit: <%= post.w_d_in_unit %>
+  </p>
+
+  <p>
+    Street Parking: <%= post.street_parking %>
+  </p>
+
+ -->

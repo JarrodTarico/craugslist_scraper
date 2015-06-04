@@ -33,7 +33,7 @@ namespace :scraper do
 	# puts result["postings"].first["annotations"]["cats"]
 	# puts result["postings"].first["annotations"]["dogs"]
 	# puts result["postings"].first["annotations"]["bedrooms"]
-	# puts JSON.pretty_generate result["postings"].first
+	# puts result["postings"].first["images"].first["full"]
 
 
 
@@ -46,7 +46,7 @@ namespace :scraper do
 		@post.heading = posting["heading"]
 		@post.body = posting["body"]
 		@post.price = posting["price"]
-		@post.neighborhood = posting["location"]["locality"]
+		@post.neighborhood = Location.find_by(code: posting["location"]["locality"]).try(:name) 
 		@post.external_url = posting["external_url"]
 		@post.timestamp = posting["timestamp"]
 		@post.bedrooms = posting["annotations"]["bedrooms"] if posting["annotations"]["bedrooms"].present?
@@ -63,6 +63,14 @@ namespace :scraper do
 		# Save Post
 		@post.save 
 
+		#Loop over images and save to image database
+		posting["images"].each do |image|
+			@image = Image.new
+			@image.url = image["full"]
+			@image.post_id = @post.id 
+			@image.save 
+		end 
+
 	end 
 
   end
@@ -71,6 +79,43 @@ namespace :scraper do
   task destroy_all_posts: :environment do
   		Post.destroy_all
 
+  end
+
+   desc "Save neighborhoods in a reference table"
+  task scrape_neighborhoods: :environment do
+  		
+  	require 'open-uri'
+	require 'JSON'
+
+	#Set API token and URL
+	auth_token = "968104a069364eba6a578a3016e696bf"
+	location_url = "http://reference.3taps.com/locations"
+
+	#Specify request parameters
+	params = {
+		auth_token: auth_token,
+		level: "locality",
+		city: "USA-NYM-BRL"
+	}
+
+	#Prepare API Request
+
+	uri = URI.parse(location_url)
+	uri.query = URI.encode_www_form(params)
+
+	#Submit request
+	result = JSON.parse(open(uri).read)
+
+	# Display results to screen
+	# puts JSON.pretty_generate result
+
+	#Store results in Database
+	result["locations"].each do |location|
+		@location = Location.new
+		@location.code = location["code"]
+		@location.name = location["short_name"]
+		@location.save
+	end
   end
 
 end
