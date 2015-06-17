@@ -3,7 +3,7 @@ namespace :scraper do
   task scrape: :environment do
 
   	require 'open-uri'
-	require 'JSON'
+	require 'json'
 
 	#Set API token and URL
 	auth_token = "968104a069364eba6a578a3016e696bf"
@@ -94,7 +94,7 @@ namespace :scraper do
   task scrape_neighborhoods: :environment do
   		
   	require 'open-uri'
-	require 'JSON'
+	require 'json'
 
 	#Set API token and URL
 	auth_token = "968104a069364eba6a578a3016e696bf"
