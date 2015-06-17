@@ -1,49 +1,57 @@
 <p id="notice"><%= notice %></p>
 
 <div class = "container">
-
-  <p>
-    <strong>Heading:</strong>
+  <div class = "header">
+  <h3>
     <%= @post.heading %>
+  </h3>
+
+ <p>
+    <%= link_to @post.external_url, @post.external_url %>
   </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= @post.body %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= @post.price %>
-  </p>
-
-  <p>
-    <strong>Neighborhood:</strong>
-    <%= @post.neighborhood %>
-  </p>
-
-  <p>
-    <strong>External url:</strong>
-    <%= @post.external_url %>
-  </p>
-
-  <p>
-    <strong>Timestamp:</strong>
-    <%= @post.timestamp %>
-  </p>
-
-  <p>
-    Bedrooms: <%= @post.bedrooms %>
-  </p>
-
-  <p> 
-    Bathrooms: <%= @post.bathrooms %>
-  </p>
-
-  <% @images.each do |image| %>
-    <%= image_tag image.url, class: "thumbnail"  %>
-  <%end%>
-
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-  <%= link_to 'Back', posts_path %>
 </div>
+
+<div class= "row">
+  <div class = "col-md-7" id= "post-images">
+     <% if @images.blank? %>
+        <%= image_tag "http://www.necdisplay.com/images/Products340x340/ImageNotAvailable.png", class: "thumbnail" %>
+        <% else %>
+          <% @images.each do |image| %>
+          <%= image_tag image.url, class: "thumbnail"  %>
+          <%end%>
+      <%end%>
+  </div>
+
+  
+
+  <div class = "col-md-5">
+
+    <div class="basic-info">
+      <h4> Basic Info </h4>
+    <% if @post.price.present? %>
+    Price: <%= number_to_currency(@post.price, precision: 0) %> <br>
+    <%end%>
+    Last Updated: <%= "#{time_ago_in_words(Time.at(@post.timestamp.to_i))} ago" %> <br>
+    
+    <% if @post.neighborhood.present? %>
+    Neighborhood: <%= @post.neighborhood %> <br>
+    <%end%>
+    <% if @post.bedrooms.present? %>
+    Bedrooms: <%= @post.bedrooms %><br>
+    <%end%>
+    <% if @post.bathrooms.present? %>
+    Bathrooms: <%= @post.bathrooms %> <br>
+    <%end%>
+  </div>
+    
+    <div class="description">
+    <h4> Description </h4>
+    <p>
+    <%= @post.body %> 
+  </p>
+</div>
+
+    </div>
+  </div>
+</div>
+

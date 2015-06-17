@@ -47,5 +47,7 @@ group :development, :test do
 
   gem 'will_paginate', '~> 3.0.6'
   gem 'will_paginate-bootstrap'
+  gem 'better_errors'
+  gem "binding_of_caller"
 end
 
