@@ -51,5 +51,6 @@ group :development, :test do
   gem "binding_of_caller"
   gem 'pg', group: :production
   gem 'rails_12factor', group: :production
+  gem 'json', '~> 1.8.3'
 end
 
