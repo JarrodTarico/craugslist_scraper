@@ -80,6 +80,7 @@ namespace :scraper do
 			puts Anchor.first.value
 			break if result["postings"].empty?
 
+
 	end 
 
   end

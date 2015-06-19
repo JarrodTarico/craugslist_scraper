@@ -47,6 +47,9 @@ group :development, :test do
 
   gem 'will_paginate', '~> 3.0.6'
   gem 'will_paginate-bootstrap'
+  #Pagination Gem/ Let's see if it works better than will_paginate 
+  gem 'kaminari'
+  gem 'bootstrap-kaminari-views'
   gem 'better_errors'
   gem "binding_of_caller"
   gem 'pg', group: :production
