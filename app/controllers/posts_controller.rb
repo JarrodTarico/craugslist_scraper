@@ -8,7 +8,7 @@ end
   # GET /posts.json
   # going to put this back soon .page(params[:page])
   def index
-    $paginate = Post.order('timestamp DESC').(paginate(:page => params[:page], :per_page => 30))
+    $paginate = Post.order('timestamp DESC').paginate(:page => params[:page], :per_page => 30)
     @posts = $paginate
     @posts = @posts.where(bedrooms:params["bedrooms"]) if params["bedrooms"].present?
     @posts = @posts.where(bathrooms:params["bathrooms"]) if params["bathrooms"].present?
