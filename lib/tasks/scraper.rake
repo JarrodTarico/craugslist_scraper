@@ -77,7 +77,6 @@ namespace :scraper do
 		end 
 
 			Anchor.first.update(value: result["anchor"])
-			puts Anchor.first.value
 			break if result["postings"].empty?
 
 
@@ -131,7 +130,7 @@ namespace :scraper do
   desc "Discard old data"
   task discard_old_data: :environment do 
   	Post.all.each do |post|
-  		if post.created_at < 7.hours.ago
+  		if post.created_at < 6.hours.ago
   			post.destroy
   		end
   	end
