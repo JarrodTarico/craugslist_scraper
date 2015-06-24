@@ -45,8 +45,8 @@ group :development, :test do
   gem 'bootstrap-sass', '~> 3.3.4'
   gem "autoprefixer-rails"
 
-  gem 'will_paginate', '~> 3.0'
-  gem 'will_paginate-bootstrap'
+  gem 'will_paginate', '~> 3.0', group: :production
+  gem 'will_paginate-bootstrap', group: :production
  
   gem 'better_errors'
   gem "binding_of_caller"
