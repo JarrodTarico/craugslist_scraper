@@ -17,7 +17,7 @@ namespace :scraper do
 		params = {
 			auth_token: auth_token,
 			anchor: Anchor.first.value,
-			source: "CRAIG",
+			source: "CRAIG|APTSD|RENTD|BKPGE",
 			category_group: "RRRR",
 			category: "RHFR",
 			'location.city' => "USA-NYM-BRL",
