@@ -16,7 +16,7 @@ namespace :scraper do
 		#Specify request parameters
 		params = {
 			auth_token: auth_token,
-			anchor: 2300402345,
+			anchor: '2300402345',
 			source: "CRAIG|APTSD|RENTD|BKPGE",
 			category_group: "RRRR",
 			category: "RHFR|RSUB",
