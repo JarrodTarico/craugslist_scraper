@@ -11,15 +11,15 @@ namespace :scraper do
 
 	#Grab Data until up-to-date
 
-	loop do 
+	
 
 		#Specify request parameters
 		params = {
 			auth_token: auth_token,
-			anchor: Anchor.first.value,
+			anchor: 2300402345,
 			source: "CRAIG|APTSD|RENTD|BKPGE",
 			category_group: "RRRR",
-			category: "RHFR",
+			category: "RHFR|RSUB",
 			'location.city' => "USA-NYM-BRL",
 			retvals: "location,external_url,heading,body,timestamp,price,images,annotations"
 		}
@@ -76,11 +76,10 @@ namespace :scraper do
 			end
 		end 
 
-			Anchor.first.update(value: result["anchor"])
-			break if result["postings"].empty?
+			
 
 
-	end 
+	 
 
   end
 
